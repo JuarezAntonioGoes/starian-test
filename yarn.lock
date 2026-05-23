@@ -301,6 +301,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular/cdk@npm:^21.2.12":
+  version: 21.2.12
+  resolution: "@angular/cdk@npm:21.2.12"
+  dependencies:
+    parse5: ^8.0.0
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^21.0.0 || ^22.0.0
+    "@angular/core": ^21.0.0 || ^22.0.0
+    "@angular/platform-browser": ^21.0.0 || ^22.0.0
+    rxjs: ^6.5.3 || ^7.4.0
+  checksum: 977d651b8e785412c0cd04e696de0515fe2e2793d8e260ed47e29c37beeb7481c26aed3c52456644fdfb6800907070150d0a02305894ba9317386f5cd0c0628f
+  languageName: node
+  linkType: hard
+
 "@angular/cli@npm:^21.2.12":
   version: 21.2.12
   resolution: "@angular/cli@npm:21.2.12"
@@ -405,6 +420,22 @@ __metadata:
     "@angular/platform-browser": 21.2.14
     rxjs: ^6.5.3 || ^7.4.0
   checksum: 3bc4473f94c52ed33184b934ec234dc72ba688947ec68e04ece82dbf35a89b808818ff9ce97934fdb3ef778dfeaddd8ec1a942d1c0a05ef00eba04f394f79fb1
+  languageName: node
+  linkType: hard
+
+"@angular/material@npm:^21.2.12":
+  version: 21.2.12
+  resolution: "@angular/material@npm:21.2.12"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/cdk": 21.2.12
+    "@angular/common": ^21.0.0 || ^22.0.0
+    "@angular/core": ^21.0.0 || ^22.0.0
+    "@angular/forms": ^21.0.0 || ^22.0.0
+    "@angular/platform-browser": ^21.0.0 || ^22.0.0
+    rxjs: ^6.5.3 || ^7.4.0
+  checksum: 0142688329875dbf9de98b04d6ef28fb5d73bf2c9eb41fb141286a025012a25244ca1836e182be2acbce16006babf460e3b8d6b663b2565528d53cff3c291cf6
   languageName: node
   linkType: hard
 
@@ -6228,12 +6259,14 @@ __metadata:
   resolution: "starian-test@workspace:."
   dependencies:
     "@angular/build": ^21.2.12
+    "@angular/cdk": ^21.2.12
     "@angular/cli": ^21.2.12
     "@angular/common": ^21.2.0
     "@angular/compiler": ^21.2.0
     "@angular/compiler-cli": ^21.2.0
     "@angular/core": ^21.2.0
     "@angular/forms": ^21.2.0
+    "@angular/material": ^21.2.12
     "@angular/platform-browser": ^21.2.0
     "@angular/router": ^21.2.0
     "@commitlint/cli": ^21.0.1
