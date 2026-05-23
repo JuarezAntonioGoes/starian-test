@@ -12,7 +12,7 @@ Use este workflow ao iniciar uma feature nova, uma melhoria significativa ou qua
 
 ## Passos
 
-1. Identifique o nome e domínio da feature a ser especificada.
+1. Identifique o nome e escopo da feature a ser especificada.
 
 2. Copie o template base:
 
