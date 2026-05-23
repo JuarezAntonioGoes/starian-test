@@ -3277,7 +3277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-truncate@npm:^5.0.0":
+"cli-truncate@npm:^5.0.0, cli-truncate@npm:^5.2.0":
   version: 5.2.0
   resolution: "cli-truncate@npm:5.2.0"
   dependencies:
@@ -3954,7 +3954,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:^5.0.1":
+"eventemitter3@npm:^5.0.1, eventemitter3@npm:^5.0.4":
   version: 5.0.4
   resolution: "eventemitter3@npm:5.0.4"
   checksum: bcbd2c3a9d2553c2289623ede8aab474d5c92bcbf18e5fe76f0e550c2b7801afb5a4351c7f11e8ee2379cca1ee48316aeb98fc3b946b7dd1f47a4c1ee8c4dcf2
@@ -4774,6 +4774,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lint-staged@npm:^17.0.5":
+  version: 17.0.5
+  resolution: "lint-staged@npm:17.0.5"
+  dependencies:
+    listr2: ^10.2.1
+    picomatch: ^4.0.4
+    string-argv: ^0.3.2
+    tinyexec: ^1.1.2
+    yaml: ^2.8.4
+  dependenciesMeta:
+    yaml:
+      optional: true
+  bin:
+    lint-staged: bin/lint-staged.js
+  checksum: 9e8ace17986e97ecbe16a0b97c1de361e58757340330efcfc5b665cb407ea80748acf8b74bcfd8e75ed26561e17677d85cde47d5a3af5009d0bd00f08f684ac5
+  languageName: node
+  linkType: hard
+
 "listr2@npm:9.0.5":
   version: 9.0.5
   resolution: "listr2@npm:9.0.5"
@@ -4785,6 +4803,19 @@ __metadata:
     rfdc: ^1.4.1
     wrap-ansi: ^9.0.0
   checksum: 64ef0dcd6f69e131f5699f584c13096d828a747472d4a18e68a9418848a54aef86bf953bf4a8a03a3dff24dacf771fab919dad59dce115244308a06d147acbfa
+  languageName: node
+  linkType: hard
+
+"listr2@npm:^10.2.1":
+  version: 10.2.1
+  resolution: "listr2@npm:10.2.1"
+  dependencies:
+    cli-truncate: ^5.2.0
+    eventemitter3: ^5.0.4
+    log-update: ^6.1.0
+    rfdc: ^1.4.1
+    wrap-ansi: ^10.0.0
+  checksum: 0a95c80bfad8be56652c5f180d9b8105c2406222df9b794a7c02fdf798e263ec88ab7e275b528f79fdab1c4c5b9c3cb3fc2356803b0db7622a5741c8cab7abcf
   languageName: node
   linkType: hard
 
@@ -6209,6 +6240,7 @@ __metadata:
     "@commitlint/config-conventional": ^21.0.1
     husky: ^9.1.7
     jsdom: ^28.0.0
+    lint-staged: ^17.0.5
     prettier: ^3.8.1
     rxjs: ~7.8.0
     tslib: ^2.3.0
@@ -6235,6 +6267,13 @@ __metadata:
   version: 0.3.2
   resolution: "stdin-discarder@npm:0.3.2"
   checksum: 07b3edbe4fb26f6d744e730069f6a5f26b0b2d1638bfc495529025077e867982a28f3f6862f0ecd10c9fe70a2dc19ca60d39b89f5cf53c28d5791a379f348481
+  languageName: node
+  linkType: hard
+
+"string-argv@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "string-argv@npm:0.3.2"
+  checksum: 8703ad3f3db0b2641ed2adbb15cf24d3945070d9a751f9e74a924966db9f325ac755169007233e8985a39a6a292f14d4fee20482989b89b96e473c4221508a0f
   languageName: node
   linkType: hard
 
@@ -6315,7 +6354,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyexec@npm:^1.0.0, tinyexec@npm:^1.0.2":
+"tinyexec@npm:^1.0.0, tinyexec@npm:^1.0.2, tinyexec@npm:^1.1.2":
   version: 1.2.2
   resolution: "tinyexec@npm:1.2.2"
   checksum: 8d7cbfc8cb09087905d021063ef50182ddf2a9b3184ffe1f5b000056721b6bcc34d3f7e38eae0abfa83d31e92948cb0825a4994ead3fe2db3ff7656baeff3cb3
@@ -6762,6 +6801,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"wrap-ansi@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "wrap-ansi@npm:10.0.0"
+  dependencies:
+    ansi-styles: ^6.2.3
+    string-width: ^8.2.0
+    strip-ansi: ^7.1.2
+  checksum: 1ad55bbb6db345519834de53b93732a19abee0a3fc8315c7e037d7ae61420932335159f53f82259c2941dab91bda66b1b4886037216e1dfaae3f3b3fc6aa0a41
+  languageName: node
+  linkType: hard
+
 "wrap-ansi@npm:^6.2.0":
   version: 6.2.0
   resolution: "wrap-ansi@npm:6.2.0"
@@ -6830,6 +6880,15 @@ __metadata:
   version: 5.0.0
   resolution: "yallist@npm:5.0.0"
   checksum: eba51182400b9f35b017daa7f419f434424410691bbc5de4f4240cc830fdef906b504424992700dc047f16b4d99100a6f8b8b11175c193f38008e9c96322b6a5
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.8.4":
+  version: 2.9.0
+  resolution: "yaml@npm:2.9.0"
+  bin:
+    yaml: bin.mjs
+  checksum: f0f74b349c126bb9acf649be1e7efaec5869b1567bdc047e43b176bcdd7730a9bc7ab8fc9c6b1c358e611fab0fe0a0d8933393f1af383a7dc0b4755a1d5f31f9
   languageName: node
   linkType: hard
 
