@@ -33,7 +33,7 @@ O usuário consegue acessar o painel administrativo da aplicação e visualizar 
 ## Requisitos Funcionais
 
 - RF01: A aplicação deve exibir a lista completa de produtos retornados pelo endpoint `GET https://fakestoreapi.com/products` em uma tabela
-- RF02: Cada linha da tabela deve exibir: imagem (thumbnail), título, categoria e preço
+- RF02: Cada linha da tabela deve exibir: imagem (thumbnail), título, categoria, preço e avaliação (`rating.rate`)
 - RF03: A tabela deve exibir um indicador de carregamento enquanto a requisição estiver em andamento
 - RF04: Caso a requisição falhe, a aplicação deve exibir uma mensagem de erro com opção de tentar novamente
 - RF05: Cada linha da tabela deve ter ações de **Editar** e **Excluir** acessíveis diretamente na coluna de ações
@@ -58,7 +58,7 @@ O usuário consegue acessar o painel administrativo da aplicação e visualizar 
 ## Critérios de Aceitação (alto nível)
 
 - [ ] CA01: Ao acessar `/products`, o usuário vê um loader enquanto os dados são buscados
-- [ ] CA02: Após o carregamento, todos os produtos da API são exibidos em tabela com imagem, título, categoria e preço
+- [ ] CA02: Após o carregamento, todos os produtos da API são exibidos em tabela com imagem, título, categoria, preço e avaliação
 - [ ] CA03: Se a requisição falhar, uma mensagem de erro é exibida com botão "Tentar novamente"
 - [ ] CA04: Cada linha da tabela possui botões de "Editar" e "Excluir" visíveis e acessíveis
 - [ ] CA05: A toolbar exibe o botão "Novo Produto" que leva à tela de criação
@@ -83,4 +83,4 @@ O usuário consegue acessar o painel administrativo da aplicação e visualizar 
 ## Referências
 
 - Endpoint: `GET https://fakestoreapi.com/products`
-- Resposta esperada: array de objetos `{ id, title, price, description, category, image }`
+- Resposta esperada: array de objetos `{ id, title, price, description, category, image, rating: { rate, count } }`

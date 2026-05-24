@@ -11,7 +11,7 @@ commit: ''
 
 ## Visão Geral Técnica
 
-A feature implementa a tela principal do painel administrativo (`/products`). Um `ProductService` singleton expõe signals reativos (`products`, `loading`, `error`) alimentados por `HttpClient`. O `ProductListComponent` consome esses signals diretamente no template via `@if`/`@for` e renderiza uma `mat-table` com colunas de imagem, título, categoria, preço e ações. A navegação para criação e edição usa o `Router` do Angular. Nenhum estado global externo (NgRx) é necessário.
+A feature implementa a tela principal do painel administrativo (`/products`). Um `ProductService` singleton expõe signals reativos (`products`, `loading`, `error`) alimentados por `HttpClient`. O `ProductListComponent` consome esses signals diretamente no template via `@if`/`@for` e renderiza uma `mat-table` com colunas de imagem, título, categoria, preço, avaliação e ações. A navegação para criação e edição usa o `Router` do Angular. Nenhum estado global externo (NgRx) é necessário.
 
 ## Arquitetura e Estrutura de Arquivos
 
@@ -19,7 +19,7 @@ A feature implementa a tela principal do painel administrativo (`/products`). Um
 src/app/
   core/
     models/
-      product.model.ts          ← interface Product
+      product.model.ts          ← interfaces Product e Rating
     services/
       product.service.ts        ← HttpClient + signals de estado
       product.service.spec.ts
@@ -38,6 +38,11 @@ src/app/
 ```typescript
 // src/app/core/models/product.model.ts
 
+export interface Rating {
+  rate: number;
+  count: number;
+}
+
 export interface Product {
   id: number;
   title: string;
@@ -45,6 +50,7 @@ export interface Product {
   description: string;
   category: string;
   image: string;
+  rating: Rating;
 }
 ```
 
@@ -83,6 +89,7 @@ export const environment = {
 | `title`    | Título truncado a 1 linha                                       |
 | `category` | Texto da categoria                                              |
 | `price`    | Formatado como `$ 109.95`                                       |
+| `rating`   | `rating.rate` / 5                                               |
 | `actions`  | Botões Editar (`mat-icon-button`) e Excluir (`mat-icon-button`) |
 
 ## Serviços
@@ -183,7 +190,7 @@ loadProducts(): void {
 - [ ] TAC03: Em resposta de erro HTTP, `error` signal contém mensagem não-nula e `products` permanece `[]`
 - [ ] TAC04: O template exibe `mat-spinner` enquanto `loading = true`
 - [ ] TAC05: O template renderiza uma linha na `mat-table` por produto em `products`
-- [ ] TAC06: Cada linha exibe imagem, título, categoria e preço formatado
+- [ ] TAC06: Cada linha exibe imagem, título, categoria, preço formatado e avaliação (`rating.rate`)
 - [ ] TAC07: Cada linha exibe botões de ação "Editar" e "Excluir" com `aria-label`
 - [ ] TAC08: O template exibe bloco de erro com botão "Tentar novamente" quando `error !== null`
 - [ ] TAC09: O template exibe mensagem "Nenhum produto encontrado" quando `products = []` e `loading = false` e `error = null`
@@ -205,7 +212,7 @@ loadProducts(): void {
 > Será detalhado na etapa sdd3-criar-tasks.
 
 - [ ] T01: Criar `environment.ts` com `apiUrl`
-- [ ] T02: Criar `product.model.ts` com interface `Product`
+- [ ] T02: Criar `product.model.ts` com interfaces `Product` e `Rating`
 - [ ] T03: Implementar `ProductService` com signals e `loadProducts()`
 - [ ] T04: Escrever testes do `ProductService`
 - [ ] T05: Configurar rota `/products` em `app.routes.ts`
