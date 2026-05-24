@@ -3,7 +3,7 @@ title: '<ID> — <Título da Tarefa>'
 type: task
 id: 'T00'
 scope: '<escopo>'
-task-list: 'wip/tasks/<escopo>/<nome>.task-list.md'
+task-list: 'wip/tasks/<escopo>/<nome-da-feature>/<nome>.task-list.md'
 status: pending # pending | in-progress | done | blocked
 created: 'YYYY-MM-DD'
 updated: 'YYYY-MM-DD'

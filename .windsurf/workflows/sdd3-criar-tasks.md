@@ -22,7 +22,7 @@ Decompor a Tech Spec em tarefas pequenas, atômicas e independentes o suficiente
 
    ```
    .windsurf/templates/task-list.template.md
-   → wip/tasks/<escopo>/<nome-da-feature>.task-list.md
+   → wip/tasks/<escopo>/<nome-da-feature>/<nome-da-feature>.task-list.md
    ```
 
 3. Defina as tarefas seguindo esta ordem natural:
@@ -36,7 +36,7 @@ Decompor a Tech Spec em tarefas pequenas, atômicas e independentes o suficiente
 
    ```
    .windsurf/templates/task.template.md
-   → wip/tasks/<escopo>/<id>.task.md
+   → wip/tasks/<escopo>/<nome-da-feature>/<id>.task.md
    ```
 
    Preencha:
@@ -57,8 +57,8 @@ Decompor a Tech Spec em tarefas pequenas, atômicas e independentes o suficiente
 
 ## Saída esperada
 
-- `wip/tasks/<escopo>/<nome>.task-list.md` com todas as tarefas listadas
-- `wip/tasks/<escopo>/T01.task.md`, `T02.task.md`... um arquivo por tarefa
+- `wip/tasks/<escopo>/<nome-da-feature>/<nome>.task-list.md` com todas as tarefas listadas
+- `wip/tasks/<escopo>/<nome-da-feature>/T01.task.md`, `T02.task.md`... um arquivo por tarefa
 
 ## Próximo passo
 
