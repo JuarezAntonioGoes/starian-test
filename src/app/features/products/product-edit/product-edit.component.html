@@ -1,0 +1,12 @@
+@if (getService.loading()) {
+  <div class="state-container">
+    <mat-spinner diameter="48" />
+  </div>
+} @else if (getService.error()) {
+  <div class="state-container">
+    <p class="error-message">{{ getService.error() }}</p>
+    <button mat-stroked-button (click)="goBack()">Voltar</button>
+  </div>
+} @else if (getService.product()) {
+  <app-product-form [initialData]="getService.product()!" />
+}
