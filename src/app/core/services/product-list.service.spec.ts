@@ -81,4 +81,67 @@ describe('ProductListService', () => {
     expect(service.error()).toBeNull();
     expect(service.products()).toEqual(mockProducts);
   });
+
+  describe('deleteProduct()', () => {
+    beforeEach(() => {
+      service.products.set([...mockProducts]);
+    });
+
+    it('should make DELETE /products/:id', () => {
+      service.deleteProduct(1);
+      const req = httpController.expectOne('https://fakestoreapi.com/products/1');
+      expect(req.request.method).toBe('DELETE');
+      req.flush(mockProducts[0]);
+    });
+
+    it('should add id to deletingProductIds during request and remove after success', () => {
+      service.deleteProduct(1);
+      expect(service.deletingProductIds().has(1)).toBe(true);
+      httpController.expectOne('https://fakestoreapi.com/products/1').flush(mockProducts[0]);
+      expect(service.deletingProductIds().has(1)).toBe(false);
+    });
+
+    it('should remove product from products signal on success', () => {
+      service.deleteProduct(1);
+      httpController.expectOne('https://fakestoreapi.com/products/1').flush(mockProducts[0]);
+      expect(service.products().find((p) => p.id === 1)).toBeUndefined();
+      expect(service.products().length).toBe(1);
+    });
+
+    it('should remove id from deletingProductIds after HTTP error', () => {
+      service.deleteProduct(1);
+      httpController
+        .expectOne('https://fakestoreapi.com/products/1')
+        .flush('Error', { status: 500, statusText: 'Server Error' });
+      expect(service.deletingProductIds().has(1)).toBe(false);
+    });
+
+    it('should emit error message via deleteError$ on HTTP error', () => {
+      let errorMsg: string | undefined;
+      service.deleteError$.subscribe((msg) => (errorMsg = msg));
+      service.deleteProduct(1);
+      httpController
+        .expectOne('https://fakestoreapi.com/products/1')
+        .flush('Error', { status: 500, statusText: 'Server Error' });
+      expect(errorMsg).toBe('Não foi possível excluir o produto. Tente novamente.');
+    });
+
+    it('should support concurrent deletions of different products', () => {
+      service.deleteProduct(1);
+      service.deleteProduct(2);
+      expect(service.deletingProductIds().has(1)).toBe(true);
+      expect(service.deletingProductIds().has(2)).toBe(true);
+      httpController.expectOne('https://fakestoreapi.com/products/1').flush(mockProducts[0]);
+      expect(service.deletingProductIds().has(1)).toBe(false);
+      expect(service.deletingProductIds().has(2)).toBe(true);
+      httpController.expectOne('https://fakestoreapi.com/products/2').flush(mockProducts[1]);
+      expect(service.deletingProductIds().size).toBe(0);
+    });
+
+    it('should not remove other products on success', () => {
+      service.deleteProduct(1);
+      httpController.expectOne('https://fakestoreapi.com/products/1').flush(mockProducts[0]);
+      expect(service.products()[0]).toEqual(mockProducts[1]);
+    });
+  });
 });
