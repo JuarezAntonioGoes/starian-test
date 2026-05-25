@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
-import { catchError, finalize, of } from 'rxjs';
+import { Subject, catchError, finalize, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Product } from '../models/product.model';
 
@@ -11,6 +11,27 @@ export class ProductListService {
   readonly products = signal<Product[]>([]);
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
+  readonly deletingProductIds = signal<Set<number>>(new Set());
+  readonly deleteError$ = new Subject<string>();
+
+  deleteProduct(id: number): void {
+    this.deletingProductIds.update((ids) => new Set(ids).add(id));
+    this.http
+      .delete<Product>(`${environment.apiUrl}/products/${id}`)
+      .pipe(
+        finalize(() =>
+          this.deletingProductIds.update((ids) => {
+            const next = new Set(ids);
+            next.delete(id);
+            return next;
+          }),
+        ),
+      )
+      .subscribe({
+        next: () => this.products.update((list) => list.filter((p) => p.id !== id)),
+        error: () => this.deleteError$.next('Não foi possível excluir o produto. Tente novamente.'),
+      });
+  }
 
   loadProducts(): void {
     this.loading.set(true);
