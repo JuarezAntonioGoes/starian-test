@@ -1,9 +1,7 @@
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { Product } from '../../../core/models/product.model';
 import { ProductListService } from '../../../core/services/product-list.service';
 import { ProductListComponent } from './product-list.component';
@@ -38,12 +36,16 @@ describe('ProductListComponent', () => {
   const loadingMock = signal(false);
   const errorMock = signal<string | null>(null);
   const loadProductsMock = vi.fn();
+  const deleteErrorSubject = new Subject<string>();
 
   const mockProductService = {
     products: productsMock,
     loading: loadingMock,
     error: errorMock,
+    deletingProductIds: signal<Set<number>>(new Set()),
+    deleteError$: deleteErrorSubject,
     loadProducts: loadProductsMock,
+    deleteProduct: vi.fn(),
   };
 
   afterEach(() => {
@@ -55,12 +57,12 @@ describe('ProductListComponent', () => {
     loadingMock.set(false);
     errorMock.set(null);
 
+    const routerMock = { navigate: vi.fn() };
+
     await TestBed.configureTestingModule({
       imports: [ProductListComponent],
       providers: [
-        provideRouter([]),
-        provideHttpClient(),
-        provideHttpClientTesting(),
+        { provide: Router, useValue: routerMock },
         { provide: ProductListService, useValue: mockProductService },
       ],
     }).compileComponents();

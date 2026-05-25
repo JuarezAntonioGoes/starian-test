@@ -6,6 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProductListService } from '../../../core/services/product-list.service';
+import { ProductDeleteButtonComponent } from './product-delete-button/product-delete-button.component';
 
 @Component({
   selector: 'app-product-list',
@@ -15,6 +16,7 @@ import { ProductListService } from '../../../core/services/product-list.service'
     MatProgressSpinnerModule,
     MatTableModule,
     MatToolbarModule,
+    ProductDeleteButtonComponent,
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',

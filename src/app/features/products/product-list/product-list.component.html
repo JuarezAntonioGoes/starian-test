@@ -57,9 +57,7 @@
           <button mat-icon-button aria-label="Editar produto" (click)="navigateToEdit(product.id)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" aria-label="Excluir produto">
-            <mat-icon>delete</mat-icon>
-          </button>
+          <app-product-delete-button [product]="product" />
         </td>
       </ng-container>
 
