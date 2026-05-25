@@ -35,9 +35,11 @@ src/
 │   │       └── product-edit/          # Tela de edição (carrega produto e delega ao form)
 │   └── shared/
 │       └── components/
-│           └── page-header/   # Header reutilizável com título e botão voltar
+│           ├── loading-spinner/  # Spinner de carregamento reutilizável
+│           ├── page-header/      # Header reutilizável com título e botão voltar
+│           └── text-field/       # Campo de texto genérico via ControlValueAccessor
 └── styles/
-    └── _typography.scss       # Mixins de tipografia (escala Roboto)
+    └── _typography.scss          # Mixins de tipografia (escala Roboto)
 ```
 
 ### Decisões de design
@@ -61,6 +63,12 @@ O botão de exclusão encapsula toda sua responsabilidade: abrir o dialog de con
 
 **`ProductFormComponent` compartilhado**
 O mesmo componente de formulário é usado para criação e edição. O modo é determinado pelo `@Input() initialData?: Product`. Isso evita duplicação de lógica de validação e submissão.
+
+**`TextFieldComponent` via ControlValueAccessor**
+Campo de texto genérico compatível com `formControlName` e `formControl`. Injeta `NgControl` no construtor para acessar o controle pai sem DI circular, copiando seus validators para o controle interno. Exibe mensagens de erro padrão por chave (`required`, `minlength`, `min`, etc.) com suporte a overrides via input `errors`. O asterisco de obrigatório (`*`) é derivado automaticamente do validator `required` do controle pai.
+
+**`LoadingSpinnerComponent` reutilizável**
+Wrapper sobre `mat-spinner` com centralização vertical (`min-height: 60vh`) e mensagem opcional. Usado em todas as telas que têm estado de carregamento (`product-list`, `product-edit`).
 
 **Mixins de tipografia via SCSS**
 Em vez de classes utilitárias globais (estilo Tailwind), a tipografia é definida em `src/styles/_typography.scss` como mixins Sass e incluída diretamente nas classes de cada componente (`@include typography.body-md`). Isso mantém o CSS encapsulado e evita dependência de classes no template HTML.
@@ -111,12 +119,12 @@ A aplicação consome a [Fake Store API](https://fakestoreapi.com):
 
 ## Testes
 
-73 testes unitários cobrindo serviços e componentes:
+77 testes unitários cobrindo serviços e componentes:
 
 ```bash
 yarn test
-# Test Files  9 passed (9)
-# Tests       73 passed (73)
+# Test Files  10 passed (10)
+# Tests       77 passed (77)
 ```
 
 Cada camada tem cobertura própria:

@@ -1,0 +1,27 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ label() }}</mat-label>
+
+  @if (type() === 'textarea') {
+    <textarea
+      matInput
+      [formControl]="control"
+      [placeholder]="placeholder()"
+      [rows]="rows()"
+      [required]="isRequired"
+      (blur)="onBlur()"
+    ></textarea>
+  } @else {
+    <input
+      matInput
+      [type]="type()"
+      [formControl]="control"
+      [placeholder]="placeholder()"
+      [required]="isRequired"
+      (blur)="onBlur()"
+    />
+  }
+
+  @if (activeError) {
+    <mat-error>{{ activeError }}</mat-error>
+  }
+</mat-form-field>

@@ -1,0 +1,14 @@
+@use 'styles/typography' as typography;
+
+:host {
+  display: contents;
+}
+
+mat-form-field {
+  width: 100%;
+
+  input,
+  textarea {
+    @include typography.body-lg;
+  }
+}

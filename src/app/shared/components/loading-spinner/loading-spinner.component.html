@@ -1,0 +1,6 @@
+<div class="spinner-wrapper">
+  <mat-spinner [diameter]="diameter()" />
+  @if (message()) {
+    <p class="spinner-message">{{ message() }}</p>
+  }
+</div>

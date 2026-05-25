@@ -2,13 +2,11 @@ import { Component, Input, OnInit, inject, effect } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../../core/models/product.model';
+import { Product, ProductPayload } from '../../../core/models/product.model';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
+import { TextFieldComponent } from '../../../shared/components/text-field/text-field.component';
 import { ProductFormService } from '../../../core/services/product-form.service';
 
 @Component({
@@ -17,11 +15,9 @@ import { ProductFormService } from '../../../core/services/product-form.service'
   imports: [
     ReactiveFormsModule,
     MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
     MatProgressSpinnerModule,
     PageHeaderComponent,
+    TextFieldComponent,
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss',
@@ -78,13 +74,7 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.invalid) return;
-    const payload = this.form.getRawValue() as {
-      title: string;
-      price: number;
-      description: string;
-      category: string;
-      image: string;
-    };
+    const payload = this.form.getRawValue() as ProductPayload;
     if (this.isEditMode) {
       this.formService.updateProduct(this.initialData!.id, payload);
     } else {

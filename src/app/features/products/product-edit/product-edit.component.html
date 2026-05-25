@@ -1,7 +1,5 @@
 @if (getService.loading()) {
-  <div class="state-container">
-    <mat-spinner diameter="48" />
-  </div>
+  <app-loading-spinner message="Carregando produto..." />
 } @else if (getService.error()) {
   <div class="state-container">
     <p class="error-message">{{ getService.error() }}</p>

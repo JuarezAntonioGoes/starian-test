@@ -1,10 +1,12 @@
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../../core/models/product.model';
 import { ProductFormService } from '../../../core/services/product-form.service';
 import { ProductFormComponent } from './product-form.component';
+import { TextFieldComponent } from '../../../shared/components/text-field/text-field.component';
 
 const mockProduct: Product = {
   id: 1,
@@ -86,8 +88,12 @@ describe('ProductFormComponent', () => {
       expect(saveBtn.disabled).toBe(true);
     });
 
-    it('should show mat-error for required fields after touched', () => {
-      component.form.controls.title.markAsTouched();
+    it('should show mat-error for required fields after touched', async () => {
+      const titleField = fixture.debugElement.query(By.directive(TextFieldComponent))
+        .componentInstance as TextFieldComponent;
+      titleField.onBlur();
+      fixture.detectChanges();
+      await fixture.whenStable();
       fixture.detectChanges();
       const error = fixture.nativeElement.querySelector('mat-error');
       expect(error).not.toBeNull();

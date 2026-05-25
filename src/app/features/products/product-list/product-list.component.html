@@ -7,9 +7,7 @@
 
 <div class="container">
   @if (productService.loading()) {
-    <div class="state-container">
-      <mat-spinner diameter="48" />
-    </div>
+    <app-loading-spinner message="Carregando produtos..." />
   } @else if (productService.error()) {
     <div class="state-container">
       <p class="error-message">{{ productService.error() }}</p>

@@ -1,13 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProductGetService } from '../../../core/services/product-get.service';
+import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-product-edit',
-  imports: [MatButtonModule, MatProgressSpinnerModule, ProductFormComponent],
+  imports: [MatButtonModule, LoadingSpinnerComponent, ProductFormComponent],
   templateUrl: './product-edit.component.html',
 })
 export class ProductEditComponent implements OnInit {
