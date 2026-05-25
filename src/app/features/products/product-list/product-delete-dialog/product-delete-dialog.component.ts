@@ -8,7 +8,6 @@ export interface DeleteDialogData {
 
 @Component({
   selector: 'app-product-delete-dialog',
-  standalone: true,
   imports: [MatDialogModule, MatButtonModule],
   templateUrl: './product-delete-dialog.component.html',
 })

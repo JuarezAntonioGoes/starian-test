@@ -6,7 +6,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-page-header',
-  standalone: true,
   imports: [MatButtonModule, MatIconModule, MatToolbarModule],
   templateUrl: './page-header.component.html',
   styleUrl: './page-header.component.scss',

@@ -27,7 +27,6 @@ const DEFAULT_ERROR_MESSAGES: Record<string, string> = {
 
 @Component({
   selector: 'app-text-field',
-  standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './text-field.component.html',
   styleUrl: './text-field.component.scss',

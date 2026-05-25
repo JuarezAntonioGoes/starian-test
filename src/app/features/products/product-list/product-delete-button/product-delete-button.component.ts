@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'app-product-delete-button',
-  standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatIconModule],
   template: `
     <button

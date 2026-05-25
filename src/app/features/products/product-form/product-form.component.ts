@@ -11,7 +11,6 @@ import { ProductFormService } from '../../../core/services/product-form.service'
 
 @Component({
   selector: 'app-product-form',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatButtonModule,
