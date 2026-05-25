@@ -4,8 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProductListService } from '../../../core/services/product-list.service';
+import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { ProductDeleteButtonComponent } from './product-delete-button/product-delete-button.component';
 
 @Component({
@@ -15,7 +15,7 @@ import { ProductDeleteButtonComponent } from './product-delete-button/product-de
     MatIconModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatToolbarModule,
+    PageHeaderComponent,
     ProductDeleteButtonComponent,
   ],
   templateUrl: './product-list.component.html',

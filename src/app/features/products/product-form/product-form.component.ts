@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { Product } from '../../../core/models/product.model';
+import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { ProductFormService } from '../../../core/services/product-form.service';
 
 @Component({
@@ -20,7 +20,7 @@ import { ProductFormService } from '../../../core/services/product-form.service'
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatToolbarModule,
+    PageHeaderComponent,
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss',

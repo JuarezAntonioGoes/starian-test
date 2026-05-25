@@ -1,10 +1,9 @@
-<mat-toolbar class="toolbar">
-  <span>Produtos</span>
+<app-page-header title="Produtos">
   <button mat-raised-button color="primary" (click)="navigateToNew()">
     <mat-icon>add</mat-icon>
     Novo Produto
   </button>
-</mat-toolbar>
+</app-page-header>
 
 <div class="container">
   @if (productService.loading()) {

@@ -1,0 +1,9 @@
+<mat-toolbar class="toolbar">
+  @if (backPath) {
+    <button mat-icon-button class="back-button" aria-label="Voltar" (click)="navigateBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  }
+  <span class="title">{{ title }}</span>
+  <ng-content />
+</mat-toolbar>

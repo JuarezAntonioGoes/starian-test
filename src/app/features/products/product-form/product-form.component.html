@@ -1,9 +1,4 @@
-<mat-toolbar class="toolbar">
-  <button mat-icon-button aria-label="Voltar" (click)="onCancel()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <span>{{ isEditMode ? 'Editar Produto' : 'Novo Produto' }}</span>
-</mat-toolbar>
+<app-page-header [title]="isEditMode ? 'Editar Produto' : 'Novo Produto'" backPath="/products" />
 
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">

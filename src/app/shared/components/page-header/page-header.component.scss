@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  height: 64px;
+  background: linear-gradient(
+    135deg,
+    var(--mat-sys-primary) 0%,
+    color-mix(in srgb, var(--mat-sys-primary) 80%, var(--mat-sys-tertiary)) 100%
+  );
+  color: var(--mat-sys-on-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+
+  .back-button {
+    color: var(--mat-sys-on-primary);
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .title {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ::ng-deep .mat-mdc-raised-button {
+    background-color: var(--mat-sys-on-primary);
+    color: var(--mat-sys-primary);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+}
