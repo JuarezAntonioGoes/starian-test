@@ -220,6 +220,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular/animations@npm:^21.2.14":
+  version: 21.2.14
+  resolution: "@angular/animations@npm:21.2.14"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/core": 21.2.14
+  checksum: b06a990ae3431987aa7b40ae1a1e7bd3fc0e8124351527d6b3e2f3e8aee77e83abcd9fe9389ea3c5b5fe1976b6d3f42f7ac222f9dcf61a349bfc92a719a60189
+  languageName: node
+  linkType: hard
+
 "@angular/build@npm:^21.2.12":
   version: 21.2.12
   resolution: "@angular/build@npm:21.2.12"
@@ -6258,6 +6269,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "starian-test@workspace:."
   dependencies:
+    "@angular/animations": ^21.2.14
     "@angular/build": ^21.2.12
     "@angular/cdk": ^21.2.12
     "@angular/cli": ^21.2.12
