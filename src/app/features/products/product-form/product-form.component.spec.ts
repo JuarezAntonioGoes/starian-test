@@ -1,6 +1,7 @@
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../../core/models/product.model';
 import { ProductFormService } from '../../../core/services/product-form.service';
 import { ProductFormComponent } from './product-form.component';
@@ -36,6 +37,8 @@ describe('ProductFormComponent', () => {
     reset: resetMock,
   };
 
+  const snackBarMock = { open: vi.fn() };
+
   beforeEach(async () => {
     savingMock.set(false);
     saveErrorMock.set(null);
@@ -43,12 +46,16 @@ describe('ProductFormComponent', () => {
     createProductMock.mockClear();
     updateProductMock.mockClear();
     resetMock.mockClear();
+    snackBarMock.open.mockClear();
+
+    const routerMock = { navigate: vi.fn() };
 
     await TestBed.configureTestingModule({
       imports: [ProductFormComponent],
       providers: [
-        provideRouter([{ path: 'products', component: ProductFormComponent }]),
+        { provide: Router, useValue: routerMock },
         { provide: ProductFormService, useValue: mockFormService },
+        { provide: MatSnackBar, useValue: snackBarMock },
       ],
     }).compileComponents();
 
@@ -122,26 +129,38 @@ describe('ProductFormComponent', () => {
 
     it('should navigate to /products when savedProduct signal emits', async () => {
       fixture.detectChanges();
-      const spy = vi.spyOn(router, 'navigate');
       savedProductMock.set(mockProduct);
       fixture.detectChanges();
       await fixture.whenStable();
-      expect(spy).toHaveBeenCalledWith(['/products']);
+      expect(router.navigate).toHaveBeenCalledWith(['/products']);
     });
 
-    it('should display saveError when saveError signal is set', () => {
-      saveErrorMock.set('Erro ao salvar.');
+    it('should show success snackbar on create', async () => {
       fixture.detectChanges();
-      const errorEl = fixture.nativeElement.querySelector('.save-error');
-      expect(errorEl).not.toBeNull();
-      expect(errorEl.textContent).toContain('Erro ao salvar.');
+      savedProductMock.set(mockProduct);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(snackBarMock.open).toHaveBeenCalledWith('Produto criado com sucesso!', 'Fechar', {
+        duration: 3000,
+      });
+    });
+
+    it('should show error snackbar when saveError is set', () => {
+      fixture.detectChanges();
+      saveErrorMock.set('Não foi possível salvar o produto. Tente novamente.');
+      fixture.detectChanges();
+      expect(snackBarMock.open).toHaveBeenCalledWith(
+        'Não foi possível salvar o produto. Tente novamente.',
+        'Fechar',
+        { duration: 4000 },
+      );
     });
 
     it('should navigate to /products when cancel is clicked', () => {
-      const spy = vi.spyOn(router, 'navigate');
+      fixture.detectChanges();
       const cancelBtn = fixture.nativeElement.querySelector('button[type="button"]');
       cancelBtn.click();
-      expect(spy).toHaveBeenCalledWith(['/products']);
+      expect(router.navigate).toHaveBeenCalledWith(['/products']);
     });
   });
 
@@ -176,11 +195,20 @@ describe('ProductFormComponent', () => {
 
     it('should navigate to /products when savedProduct emits after update', async () => {
       fixture.detectChanges();
-      const spy = vi.spyOn(router, 'navigate');
       savedProductMock.set(mockProduct);
       fixture.detectChanges();
       await fixture.whenStable();
-      expect(spy).toHaveBeenCalledWith(['/products']);
+      expect(router.navigate).toHaveBeenCalledWith(['/products']);
+    });
+
+    it('should show success snackbar on update', async () => {
+      fixture.detectChanges();
+      savedProductMock.set(mockProduct);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(snackBarMock.open).toHaveBeenCalledWith('Produto atualizado com sucesso!', 'Fechar', {
+        duration: 3000,
+      });
     });
   });
 });

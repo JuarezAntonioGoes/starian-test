@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../../core/models/product.model';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { ProductFormService } from '../../../core/services/product-form.service';
@@ -30,6 +31,7 @@ export class ProductFormComponent implements OnInit {
 
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
+  private readonly snackBar = inject(MatSnackBar);
   readonly formService = inject(ProductFormService);
 
   readonly form = this.fb.group({
@@ -43,8 +45,17 @@ export class ProductFormComponent implements OnInit {
   constructor() {
     effect(() => {
       if (this.formService.savedProduct() !== null) {
+        const msg = this.isEditMode
+          ? 'Produto atualizado com sucesso!'
+          : 'Produto criado com sucesso!';
+        this.snackBar.open(msg, 'Fechar', { duration: 3000 });
         this.router.navigate(['/products']);
       }
+    });
+
+    effect(() => {
+      const err = this.formService.saveError();
+      if (err) this.snackBar.open(err, 'Fechar', { duration: 4000 });
     });
   }
 

@@ -59,10 +59,6 @@
       }
     </mat-form-field>
 
-    @if (formService.saveError()) {
-      <p class="save-error">{{ formService.saveError() }}</p>
-    }
-
     <div class="actions">
       <button mat-stroked-button type="button" (click)="onCancel()">Cancelar</button>
       <button
