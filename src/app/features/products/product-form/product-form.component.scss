@@ -1,7 +1,9 @@
+@use 'styles/typography' as typography;
+
 .container {
   display: flex;
   justify-content: center;
-  padding: 32px 24px;
+  padding: 40px 24px;
 }
 
 .form {
@@ -9,22 +11,26 @@
   flex-direction: column;
   width: 100%;
   max-width: 560px;
-  gap: 8px;
+  gap: 4px;
 
   mat-form-field {
     width: 100%;
-  }
-}
 
-.save-error {
-  color: var(--mat-sys-error);
-  margin: 0;
-  font-size: 14px;
+    input,
+    textarea {
+      @include typography.body-lg;
+    }
+  }
 }
 
 .actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 16px;
+
+  button {
+    @include typography.title-md;
+    letter-spacing: 0.01em;
+  }
 }

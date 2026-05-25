@@ -1,3 +1,5 @@
+@use 'styles/typography' as typography;
+
 :host {
   display: block;
 }
@@ -27,10 +29,9 @@
   }
 
   .title {
+    @include typography.headline-sm;
     flex: 1;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

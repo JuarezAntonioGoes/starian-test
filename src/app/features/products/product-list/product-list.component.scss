@@ -1,3 +1,5 @@
+@use 'styles/typography' as typography;
+
 .container {
   padding: 24px;
 }
@@ -12,6 +14,7 @@
 }
 
 .error-message {
+  @include typography.body-md;
   color: var(--mat-sys-error);
   margin: 0;
 }
@@ -28,8 +31,22 @@
 }
 
 .title-cell {
+  @include typography.body-md;
   max-width: 280px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.category-cell {
+  @include typography.body-sm;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.price-cell {
+  @include typography.title-md;
+}
+
+.rating-cell {
+  @include typography.body-sm;
 }
