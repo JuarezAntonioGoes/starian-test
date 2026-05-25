@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { Router } from '@angular/router';
 import { Product } from '../../../core/models/product.model';
-import { ProductService } from '../../../core/services/product.service';
+import { ProductListService } from '../../../core/services/product-list.service';
 import { ProductListComponent } from './product-list.component';
 
 const mockProducts: Product[] = [
@@ -61,7 +61,7 @@ describe('ProductListComponent', () => {
         provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),
-        { provide: ProductService, useValue: mockProductService },
+        { provide: ProductListService, useValue: mockProductService },
       ],
     }).compileComponents();
 

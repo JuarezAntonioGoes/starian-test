@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ProductService } from '../../../core/services/product.service';
+import { ProductListService } from '../../../core/services/product-list.service';
 
 @Component({
   selector: 'app-product-list',
@@ -21,7 +21,7 @@ import { ProductService } from '../../../core/services/product.service';
 })
 export class ProductListComponent implements OnInit {
   private readonly router = inject(Router);
-  readonly productService = inject(ProductService);
+  readonly productService = inject(ProductListService);
 
   readonly displayedColumns = ['image', 'title', 'category', 'price', 'rating', 'actions'];
 
